@@ -1,0 +1,35 @@
+<div class="d-flex text-center text-white">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+        <div>
+            <h3 class="float-md-left mb-0">lookVegan</h3>
+            <% console.log(currentDir) %>
+                <nav class="nav nav-masthead justify-content-center float-md-right">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+
+                    <!-- inline logic to "activate" links of the page currently being viewed
+                    makes it clear for users to know where they are on the website, looks
+                professional -->
+                    <a class="nav-link <%= currentDir === '/places' ? `active` : ' ' %>" href="/places">Vegan
+                        places!</a>
+
+                    <% if(currentUser) { %>
+                        <a class="nav-link <%= currentDir === '/places/new' ? `active` : ' ' %>" href="/places/new">Add
+                            new</a>
+                        <a class="nav-link" href="/logout">Logout</a>
+
+                        <% } else { %>
+                            <a class="nav-link <%= currentDir === '/login' ? `active` : ' ' %>" href="/login">Login</a>
+                            <a class="nav-link <%= currentDir === '/register' ? `active` : ' ' %>"
+                                href="/register">Register</a>
+                            <% } %>
+                </nav>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>

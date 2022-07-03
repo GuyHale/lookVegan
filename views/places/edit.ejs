@@ -1,0 +1,157 @@
+<!-- this is how we run code from the boilerplate.ejs file
+we will inject the below html into the body of the boilerplate.ejs
+using one template html page allows us to refrain from duplicating code
+while easily applying the same styles to everything -->
+<% layout("layouts/bpt_login") %>
+
+    <div class="col">
+        <div class="col-md-4 offset-md-3 col-xl-4 offset-xl-4">
+            <%- include('../partials/flash')%>
+
+
+                <div class="card shadow">
+                    <div class="card-body">
+
+                        <h3 class="card-title">Edit: <%= place.title %>, <%= place.location %>
+                        </h3>
+
+
+                        <form action="/places/<%= place._id %>?_method=PUT" , method="post" novalidate
+                            class="needs-validation" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label class="form-label" for="title">Restaurant</label>
+                                <input class="form-control" type="text" name="title" id="title"
+                                    value="<%= place.title%>" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="city">City</label>
+                                <input class="form-control" type="text" name="city" id="city"
+                                    value="<%= place.location%>" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="option1">Vegan option one</label>
+                                <input class="form-control" type="text" name="option1" id="option1"
+                                    value="<%= place.options[0]%>" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="mt-3">
+                                    <label class="form-label" for="price1">Price</label>
+
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">$</span>
+                                        <input id="price1" type="number" name="price1" class="form-control"
+                                            aria-label="Amount (to the nearest dollar)"
+                                            value="<%= place.optionPrices[0] %>" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="option2">Vegan option two</label>
+                                <input class="form-control" type="text" name="option2" id="option2"
+                                    value="<%= place.options[1]%>" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="mt-3">
+
+                                    <label class="form-label" for="price2">Price</label>
+
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">$</span>
+                                        <input id="price2" type="number" name="price2" class="form-control"
+                                            aria-label="Amount (to the nearest dollar)"
+                                            value="<%= place.optionPrices[1] %>" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="option3">Vegan option three</label>
+                                <input class="form-control" type="text" name="option3" id="option3"
+                                    value="<%= place.options[2]%>" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+
+                                <div class="mt-3">
+                                    <label class="form-label" for="price3">Price</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">$</span>
+                                        <input id="price3" type="number" name="price3" class="form-control"
+                                            aria-label="Amount (to the nearest dollar)"
+                                            value="<%= place.optionPrices[2]%>" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="des">Description</label>
+                                <textarea class="form-control" type="text-area" name="des" id="des"
+                                    required><%= place.description %> </textarea>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Upload images</label>
+                                <input class="form-control" type="file" name="image" id="image" multiple>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <% place.images.forEach(function(img, i) { %>
+                                    <label for="img<%= i%>">Delete</label>
+                                    <div class="form-check-inline">
+                                        <input type="checkbox" name="deleteImages[]" id="img<%= i%>"
+                                            value="<%= img.filename %>">
+                                    </div>
+                                    <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="" id="img<%= i%>">
+                                    <br>
+
+                                    <% }) %>
+                            </div>
+
+                            <div class="mb-3">
+                                <button class="btn btn-outline-success btn-block">Update <%= place.title %></button>
+                                <a class="btn btn-outline-primary btn-block " href="/places">Home page</a>
+
+                                <a class="btn btn-outline-danger btn-block" href="/places/<%= place._id %>">
+                                    <%= place.title %>
+                                </a>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+        </div>
+    </div>

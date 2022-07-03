@@ -1,0 +1,50 @@
+<!-- this is how we run code from the boilerplate.ejs file
+we will inject the below html into the body of the boilerplate.ejs
+using one template html page allows us to refrain from duplicating code
+while easily applying the same styles to everything -->
+<% layout("layouts/bpt_login") %>
+
+
+
+    <div class="row">
+
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <%- include('../partials/flash')%>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="card-title">Login!</h5>
+                            <form action="/login" , method="post" novalidate class="needs-validation">
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">Username</label>
+                                    <input class="form-control" type="text" name="username" id="username"
+                                        placeholder="Username" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="password">Password</label>
+                                    <input class="form-control" type="password" name="password" id="password"
+                                        placeholder="Password" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="mb-3">
+                                    <button class="btn btn-outline-primary btn-block">Log in</button>
+                                </div>
+                            </form>
+
+                    </div>
+
+                </div>
+
+        </div>
+    </div>
