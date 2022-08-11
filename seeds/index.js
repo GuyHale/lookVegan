@@ -6,6 +6,7 @@ const Review = require("../models/review");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding")
 // const mapboxToken = process.env.mapbox_token;
 const geoCoder = mbxGeocoding({ accessToken: "pk.eyJ1IjoiZ3V5aGFsZTk5IiwiYSI6ImNsNHR0NWFhNzBwNHczbW1sZHRhcXN1M2gifQ.pwchynun4tghC4ACwXLwtw" });
+const dbUrl = "mongodb+srv://guyHale99:HayoEW6uCS8LTqoD@cluster0.zyd6t8h.mongodb.net/?retryWrites=true&w=majority";
 
 const getGeo = async () => {
 
@@ -14,7 +15,7 @@ const getGeo = async () => {
 getGeo();
 
 //connecting mongoose to specific database
-mongoose.connect("mongodb://localhost:27017/lookVegan", {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -25,7 +26,7 @@ mongoose.connect("mongodb://localhost:27017/lookVegan", {
 const db = mongoose.connection; //connecting mongoose to db
 db.on("error", console.error.bind(console, "Connection error:"));
 db.once("open", () => {
-    console.log("Database connected");
+    console.log("Database connected", dbUrl);
 })
 
 //creating an async function to create some seed data
@@ -70,18 +71,18 @@ const seedDB = async () => {
                 optionPrices: [12, 13, 8],
                 description: "Beautiful restaurant!",
                 images: [{
-                    url: "https://res.cloudinary.com/di1utlwnn/image/upload/v1656080089/LookVegan/seeds/adam-bartoszewicz-lNFfYtrbkRM-unsplash_c1h4b1.jpg",
+                    url: "https://res.cloudinary.com/di1utlwnn/image/upload/w_900,h_750/v1656080089/LookVegan/seeds/adam-bartoszewicz-lNFfYtrbkRM-unsplash_c1h4b1.jpg",
                     filename: "LookVegan/seeds/adam-bartoszewicz-lNFfYtrbkRM-unsplash_c1h4b1.jpg"
                 },
                 {
-                    url: "https://res.cloudinary.com/di1utlwnn/image/upload/v1656080087/LookVegan/seeds/micheile-dot-com-WhcNJfhGiOk-unsplash_xdtfkv.jpg",
+                    url: "https://res.cloudinary.com/di1utlwnn/image/upload/w_900,h_750/v1656080087/LookVegan/seeds/micheile-dot-com-WhcNJfhGiOk-unsplash_xdtfkv.jpg",
                     filename: "LookVegan/seeds/micheile-dot-com-WhcNJfhGiOk-unsplash_xdtfkv.jpg"
                 },
                 {
-                    url: "https://res.cloudinary.com/di1utlwnn/image/upload/v1656080080/LookVegan/seeds/toa-heftiba-bniHpvYzckU-unsplash_llmlys.jpg",
+                    url: "https://res.cloudinary.com/di1utlwnn/image/upload/w_900,h_750/v1656080080/LookVegan/seeds/toa-heftiba-bniHpvYzckU-unsplash_llmlys.jpg",
                     filename: "LookVegan/seeds/toa-heftiba-bniHpvYzckU-unsplash_llmlys.jpg"
                 }],
-                author: "62b48bfc8f08080e850ccd03"
+                author: "62c06753f10e50ce78fcdfeb"
 
             })
             await place.save()
